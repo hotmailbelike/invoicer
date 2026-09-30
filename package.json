@@ -1,0 +1,49 @@
+{
+  "name": "invoicer",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc -b",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "fonts": "node scripts/build-pdf-fonts.mjs",
+    "check:pdf-styles": "node scripts/check-pdf-styles.mjs",
+    "verify": "npm run typecheck && npm run lint && npm run format:check && npm run test && npm run check:pdf-styles",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "dependencies": {
+    "@react-pdf/renderer": "4.9.0",
+    "clsx": "^2.1.1",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/node": "^24.13.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^5.2.0",
+    "eslint": "^10.10.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.7",
+    "globals": "^17.12.0",
+    "prettier": "^3.9.7",
+    "subset-font": "^2.7.0",
+    "tailwindcss": "^4.3.3",
+    "typescript": "6.0.3",
+    "typescript-eslint": "^8.70.0",
+    "unpdf": "^1.8.1",
+    "vite": "^7.3.6",
+    "vitest": "^4.1.11"
+  }
+}

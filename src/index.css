@@ -1,0 +1,13 @@
+@import 'tailwindcss';
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  body {
+    background-color: var(--color-zinc-100);
+    color: var(--color-zinc-900);
+    -webkit-font-smoothing: antialiased;
+  }
+}

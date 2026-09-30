@@ -1,0 +1,8 @@
+# Build settings only. Response headers live in public/_headers, which Vite copies into the build
+# output so they apply to drag-and-drop uploads too, not just CLI and Git deploys.
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "24"

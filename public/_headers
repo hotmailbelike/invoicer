@@ -1,0 +1,19 @@
+# Response headers for the built site. This file ships inside the build output, so it applies to
+# drag-and-drop uploads as well as CLI and Git deploys. Netlify and Cloudflare Pages both read it.
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: no-referrer
+  X-Frame-Options: DENY
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+  # REPORT-ONLY until verified in a browser: a wrong policy only breaks the deployed site, never
+  # local development, which sends no CSP at all. Load the site, make and download an invoice with
+  # the console open, and if nothing is reported, rename this to Content-Security-Policy.
+  #
+  # 'wasm-unsafe-eval' IS REQUIRED: the PDF engine lays out pages with WebAssembly (yoga), and
+  # Chromium refuses WebAssembly.instantiate() without it.
+  Content-Security-Policy-Report-Only: default-src 'none'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' blob: data:; frame-src blob:; object-src blob:; worker-src 'self' blob:; base-uri 'none'; form-action 'none'; frame-ancestors 'none'
+
+# Everything Vite emits here is fingerprinted, so it can be cached forever.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
