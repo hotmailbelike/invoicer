@@ -2,17 +2,22 @@
 
 What this project deliberately does and does not do, and why. Read before adding scope.
 
-## Not yet verified in a real browser
+## Verified, and what is still open
 
-The build, types, lint and the rendered PDF are verified automatically (`npm run verify`). These
-have **not** been exercised by hand yet and are the first things to check:
+Automated on every push (`npm run verify`, also run in CI): types, lint, formatting, 56 tests
+including PDFs rendered with the real fonts and their text read back.
 
-- The whole UI in Chrome, Safari and Firefox: typing, the live preview, downloading, mode switching.
-- The Content-Security-Policy. It ships as **report-only** (see `public/_headers`) because a wrong
-  policy only breaks the deployed site — dev and preview servers send no CSP. Deploy, generate and
-  download an invoice with the console open, and if nothing is reported, rename the header to
-  `Content-Security-Policy`.
-- A Netlify deploy itself.
+Checked by hand on the live GitHub Pages site (Chromium, 2026-09-30): the app loads with no
+console errors, typing reformats and updates the total, the preview renders a valid PDF
+(`%PDF-1.3`, ~10 kB) and re-renders after edits, switching to detailed mode keeps the data, and
+localStorage holds only the sender's side — no client details, no amounts.
+
+Still open:
+
+- Safari and Firefox, and downloading a PDF end to end.
+- The Content-Security-Policy in `public/_headers` has never run: GitHub Pages ignores it. It
+  applies only on Netlify or Cloudflare Pages, where it starts as report-only — check the console
+  there before renaming it to `Content-Security-Policy`.
 
 ## Measured (production build, 2026-09-16)
 
